@@ -23,7 +23,7 @@ RUN_NAME = 'SiamFC-3s-color-scratch'  # identifier of the experiment
 MODEL_CONFIG = {
   'z_image_size': 127,  # Exemplar image size
 
-  'embed_config': {'embedding_name': 'convolutional_cbam2',
+  'embed_config': {'embedding_name': 'convolutional_aacn',
                    'embedding_checkpoint_file': None,  # mat file path of the pretrained embedding model.
                    'train_embedding': True,
                    'init_method': 'kaiming_normal',

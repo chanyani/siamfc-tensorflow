@@ -42,6 +42,9 @@ class InferenceWrapper():
 
   def build_graph_from_config(self, model_config, track_config, checkpoint_path):
     """Build the inference graph and return a restore function."""
+
+
+
     self.build_model(model_config, track_config)
     ema = tf.train.ExponentialMovingAverage(0)
     variables_to_restore = ema.variables_to_restore(moving_avg_variables=[])
@@ -53,6 +56,7 @@ class InferenceWrapper():
         variables_to_restore_filterd[key] = value
 
     saver = tf.train.Saver(variables_to_restore_filterd)
+    
 
     if osp.isdir(checkpoint_path):
       checkpoint_path = tf.train.latest_checkpoint(checkpoint_path)

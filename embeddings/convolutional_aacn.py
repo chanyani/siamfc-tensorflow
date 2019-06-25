@@ -150,8 +150,8 @@ def convolutional_alexnet(inputs, is_exemplar, reuse=None, scope='convolutional_
           #b2 = slim.conv2d(b2, 128, [3, 3], 1, scope='b2')
           b2 = augmented_conv2d(b2, 128, (3,3),(1,1))
         net = tf.concat([b1, b2], 3)
-        if is_exemplar == 1:
-            net = cbam_block(net, scope+'_cbam_block', ratio=8)
+        #if is_exemplar == 1:
+            #net = cbam_block(net, scope+'_cbam_block', ratio=8)
       # Convert end_points_collection iinto a dictionary of end_points.
       end_points = slim.utils.convert_collection_to_dict(end_points_collection)
       return net, end_points

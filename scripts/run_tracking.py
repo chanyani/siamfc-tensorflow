@@ -5,7 +5,7 @@
 #
 # Distributed under terms of the MIT license.
 
-r"""Generate tracking results for videos using Siamese Model"""
+"""Generate tracking results for videos using Siamese Model"""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -44,6 +44,9 @@ def main(checkpoint, input_files):
   model_config, _, track_config = load_cfgs(checkpoint)
   track_config['log_level'] = 1
 
+  # reset the graph before create a new ema
+  #tf.reset_default_graph()
+
   g = tf.Graph()
   with g.as_default():
     model = inference_wrapper.InferenceWrapper()
@@ -63,6 +66,7 @@ def main(checkpoint, input_files):
   sess_config = tf.ConfigProto(gpu_options=gpu_options)
 
   with tf.Session(graph=g, config=sess_config) as sess:
+
     restore_fn(sess)
 
     tracker = Tracker(model, model_config=model_config, track_config=track_config)

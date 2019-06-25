@@ -17,7 +17,7 @@ import tensorflow as tf
 
 from datasets.dataloader import DataLoader
 #from embeddings.convolutional_alexnet import convolutional_alexnet_arg_scope, convolutional_alexnet
-from embeddings.convolutional_cbam2 import convolutional_alexnet_arg_scope, convolutional_alexnet
+from embeddings.convolutional_aacn import convolutional_alexnet_arg_scope, convolutional_alexnet
 from metrics.track_metrics import center_dist_error, center_score_error
 from utils.train_utils import construct_gt_score_maps, load_mat_model
 
@@ -196,7 +196,7 @@ class SiameseModel:
     if embed_config['embedding_checkpoint_file']:
       # Restore Siamese FC models from .mat model files
       initialize = load_mat_model(embed_config['embedding_checkpoint_file'],
-                                  'convolutional_alexnet_cbam2/', 'detection/')
+                                  'convolutional_aacn/', 'detection/')
 
       def restore_fn(sess):
         tf.logging.info("Restoring embedding variables from checkpoint file %s",
